@@ -1,0 +1,83 @@
+services:
+  approval-service:
+    build:
+      context: ./approval-service
+      dockerfile: Dockerfile
+    ports:
+      - "8083:8083"
+    depends_on:
+      - db
+      - mongo
+    networks:
+      - backend
+
+  booking-service:
+    build:
+      context: ./booking-service
+      dockerfile: Dockerfile
+    ports:
+      - "8082:8082"
+    depends_on:
+      - db
+      - mongo
+    environment:
+      SPRING_DATA_MONGODB_URI: mongodb://root:root@mongo:27017/bookings?authSource=admin
+    networks:
+      - backend
+
+  room-service:
+    build:
+      context: ./room-service
+      dockerfile: Dockerfile
+    ports:
+      - "8081:8081"
+    depends_on:
+      - db
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/postgres
+    networks:
+      - backend
+
+  user-service:
+    build:
+      context: ./user-service
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/postgres
+    networks:
+      - backend
+
+  db:
+    image: postgres:13
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: postgres
+    volumes:
+      - /postgresData:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    networks:
+      - backend
+
+  mongo:
+    image: mongo:latest
+    container_name: mongo
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root      
+      MONGO_INITDB_ROOT_PASSWORD: root   
+      MONGO_INITDB_DATABASE: bookings
+    ports:
+      - "27017:27017" 
+    volumes:
+      - /mongoData:/data/db
+    networks:
+      - backend
+
+networks:
+  backend:
+    driver: bridge

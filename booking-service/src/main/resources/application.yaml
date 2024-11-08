@@ -1,0 +1,14 @@
+server:
+  port: 8082
+spring:
+  main.allow-bean-definition-overriding: true
+  application:
+    name: booking-service
+  data:
+    mongodb:
+      uri: mongodb://root:root@mongo:27017/bookings?authSource=admin
+
+room-service:
+  url: http://room-service:8081/
+  services:
+    getRoomdata: rooms/%s

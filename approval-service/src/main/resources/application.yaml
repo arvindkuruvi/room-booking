@@ -1,0 +1,15 @@
+server:
+  port: 8083
+spring:
+  application:
+    name: approval-service
+
+user-service:
+  baseURL: http://user-service:8080/
+  urls:
+    getUserData: users/%s
+
+booking-service:
+  baseURL: http://booking-service:8082/
+  urls:
+    approveEvent: booking/approve
