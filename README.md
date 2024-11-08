@@ -2,11 +2,12 @@
 
 
 
-
-
 ##############################################################
 User service:
 ##############################################################
+
+Swagger url : 
+http://localhost:8080/swagger-ui/index.html#/
 
 save a new user
 
@@ -32,6 +33,10 @@ URL: http://localhost:8080//users/{id}
 ##############################################################
 booking-service
 ##############################################################
+
+Swagger url : 
+http://localhost:8082/swagger-ui/index.html#/
+
 Creating a new event
 
 Method: Post
@@ -75,6 +80,10 @@ URL: http://localhost:8081/rooms/{id}
 ##############################################################
 approval-service
 ##############################################################
+
+Swagger url : 
+http://localhost:8083/swagger-ui/index.html#/
+
 Approve an event
 
 Method: POST
