@@ -1,6 +1,12 @@
 # room-booking
 
 
+Just have a docker desktop and run the below cmds
+
+docker-compose up --build -d
+
+docker-compose down
+
 
 ##############################################################
 User service:
@@ -90,9 +96,3 @@ Method: POST
 URL: http://localhost:8083/approve/event
 
 
-
-Just have a docker desktop and run the below cmds
-
-docker-compose up --build -d
-
-docker-compose down
